@@ -1,0 +1,34 @@
+
+<%= link_to "Appointments", root_path %>
+<%= link_to "Doctor Listing", office_doctors_path %>
+
+<%= form_tag(create_patient_path) do %>
+	<%= text_field_tag :name, nil, placeholder: "Name" %> </br>
+	<%= text_field_tag :gender, nil, placeholder: "Gender" %> </br>
+	<%= text_field_tag :age, nil, placeholder: "Age" %> </br>
+	<%= text_field_tag :weight, nil, placeholder: "Weight" %> </br>
+	<%= submit_tag "Create Patient" %>
+
+<% end %>
+
+
+<h1>Current Patients</h1>
+
+
+<% @patients.each do |pat| %>
+	<ul>
+		<li><%= pat.name %></li>
+		<li><%= pat.gender %> / <%= pat.age %> / <%= pat.weight %> lbs.</li>
+		<li>
+			Seeing the Doctors:
+			<ul>
+			
+			<% pat.doctors.each do |doc| %>
+				<li> Dr. <%= doc.name %> </li>
+			<% end %>
+
+			</ul>
+		</li>
+	</ul>	
+
+<% end %>

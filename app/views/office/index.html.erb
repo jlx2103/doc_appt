@@ -1,0 +1,22 @@
+<%= link_to "Doctor Listing", office_doctors_path %>
+<%= link_to "Patient Listing", office_patients_path %></br>
+
+<%= form_tag(create_appt_path) do %>
+	<%= select_tag :patient_id, options_from_collection_for_select(@patients, "id", "name") %>
+	    <%= select_tag :doctor_id, options_from_collection_for_select(@doctors, "id", "name") %>
+	<%= datetime_select :appt_time, nil %>
+	<%= submit_tag "Make Appointments" %>
+
+<% end %>
+
+
+<h1>All Apointments</h1>
+<% @appointment.each do |appt| %>
+
+<p>
+	Dr. <%= appt.doctor.name %> </br>
+	will be seeing  <%= appt.patient.name %></br>
+	at <%= appt.appt_time %>
+</p>
+
+<% end %>

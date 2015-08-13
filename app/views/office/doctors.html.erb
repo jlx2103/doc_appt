@@ -1,0 +1,31 @@
+<%= link_to "Appointments", root_path %>
+<%= link_to "Patient Listing", office_patients_path %>
+
+<%= form_tag(create_doctor_path) do %>
+	<%= text_field_tag :name, nil, placeholder: "Name" %> </br>
+	<%= text_field_tag :specialty, nil, placeholder: "Specialty" %> </br>
+	<%= submit_tag "Create Doctor" %>
+
+<% end %>
+
+
+<h1>Doctor Directory</h1>
+
+
+<% @doctors.each do |doc| %>
+	<ul>
+		<li>Dr. <%= doc.name %></li>
+		<li>Doctor of <%= doc.specialty %></li>
+		<li>
+			Current Patients:
+			<ul>
+			<% doc.patients.each do |pat| %>
+				<li> <%= pat.name %> </li>
+
+			<% end %>
+
+			</ul>
+		</li>
+	</ul>	
+
+<% end %>
